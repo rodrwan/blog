@@ -1,0 +1,63 @@
+{{ $featured_image := .Param "featured_image"}}
+{{ $profile_image := .Param "profile_image" }}
+{{ if $featured_image }}
+  {{ $featured_image := (trim $featured_image "/") | absURL }}
+  <header class="cover bg-top" style="background-image: url('{{ $featured_image }}');">
+    <div id="pre-header">
+      <div class="transparent-bg">
+        <a href="index.html" title="home" class="sec-photo-profile">
+            {{ $profile_image := (trim $profile_image "/") | absURL }}
+          <img
+            src="{{ $profile_image }}"
+            width="120"
+            height="120"
+            class="photo-profile"
+          />
+          <h1>Rodrigo Fuenzalida</h1>
+        </a>
+        <div class="top-frame">
+          <div class="button-frame">
+            <div class="cmd-button red-button"></div>
+            <div class="cmd-button yellow-button"></div>
+            <div class="cmd-button green-button"></div>
+          </div>
+        </div>
+        <div class="description-box">
+          <h3>Welcome...</h3>
+          I'm Rodrigo Fuenzalida, Computer Engineer, born in Chile. I love
+          programming. I started programming in 2009. Now I'm programing in:<br /><br />
+          <ul>
+            <li>Golang</li>
+            <li>Node.js</li>
+            <li>Javascript</li>
+          </ul>
+          I also know:<br /><br />
+          <ul>
+              <li>Kubernetes</li>
+              <li>Docker</li>
+              <li>Microservices</li>
+            </ul>
+          Also, I'm CTO and Co-founder of
+          <a href="https://www.finciero.com" target="_blank">Finciero</a>. Please if you see any errors, notify me, for
+          further improving.
+        </div>
+      </div>
+    </div>
+  </header>
+{{ else }}
+  <header>
+    <div class="pb3-m pb6-l {{ .Site.Params.background_color_class | default "bg-black" }}">
+      {{ partial "site-navigation.html" . }}
+      <div class="tc-l pv3 ph3 ph4-ns">
+        <h1 class="f2 f-subheadline-l fw2 light-silver mb0 lh-title">
+          {{ .Title | default .Site.Title }}
+        </h1>
+        {{ with .Params.description }}
+          <h2 class="fw1 f5 f3-l white-80 measure-wide-l center lh-copy mt3 mb4">
+            {{ . }}
+          </h2>
+        {{ end }}
+      </div>
+    </div>
+  </header>
+{{ end }}
